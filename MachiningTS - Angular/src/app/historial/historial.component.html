@@ -1,0 +1,64 @@
+<div class="proveedores-tabla mat-elevation-z2">
+    <div class="table-header example-element-description">
+        <ul class="list-group">
+            <li class="list-group-item border-bottom-1 border-top-0 border-right-0 border-left-0 d-flex">
+                <div id="titulo-tabla">Historial</div>
+                <div id="numero-tabla">{{historialLength}}</div>
+                <div id="tabla-botones">
+                    <button class="btn" *ngIf="isAdmin == 'Admin'" (click)="borrarHistorial();">Borrar Historial Completo</button>
+                </div>
+                <div class="long">
+                    <mat-form-field appearance="outline">
+                        <mat-label><i class="fas fa-search"></i> &#160; Buscar</mat-label>
+                        <input class="busqueda" matInput (keyup)="applyFilter($event)" placeholder="Ej. JuanTS, Altas" #input>
+                    </mat-form-field>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="mat-elevation-z0">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="foto">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Foto </th>
+                <td mat-cell *matCellDef="let row"><img src="{{row.foto}}" (error)="onImgError($event)" class="redonda" height="75px" width="75px">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tipo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+                <td mat-cell *matCellDef="let row" class="centrado">
+                    <div class="rol" [ngClass]="{'rojo': row.tipo=='Resta', 'verde': row.tipo=='Suma' , 'azul': row.tipo=='Inicio de Sesión', 'morado': row.tipo=='Registro', 'indigo': row.tipo=='Modificación', 'negro': row.tipo=='Bajas'}">{{row.tipo}}</div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="contenido">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Contenido </th>
+                <td mat-cell *matCellDef="let row"> {{row.contenido}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="usuario">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+                <td mat-cell *matCellDef="let row"> {{row.usuario}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+                <td mat-cell *matCellDef="let row"> {{row.fecha}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td *ngIf="historialLength > 0" class="mat-cell" colspan="4">No hay resultados para la búsqueda "{{input.value}}"</td>
+                <td *ngIf="historialLength == 0" class="mat-cell" colspan="4">No existen entradas.</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>

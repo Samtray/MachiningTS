@@ -1,0 +1,256 @@
+<div class="section">
+    <div class="table-section">
+        <div class="table-header example-element-description mat-elevation-z2">
+            <ul class="list-group">
+                <li class="list-group-item border-bottom-1 border-top-0 border-right-0 border-left-0 d-flex">
+                    <div id="titulo-tabla">Inventario</div>
+                    <div id="numero-tabla">{{inventario}}</div>
+                    <div id="tabla-botones">
+                        <button *ngIf="isAdmin == 'Admin'" id="titulo-categoria" data-toggle="modal" data-target="#categoTiposModal" (click)="addTipoGrupo()" data-backdrop="static" data-keyboard="false">+ Grupos y Tipos </button>
+                        <button *ngIf="isAdmin == 'Admin'" id="titulo-herramienta" data-toggle="modal" data-target="#herramientaModal" (click)="addClick()" data-backdrop="static" data-keyboard="false">+ Nueva Herramienta</button >
+			    </div>
+				<div class="long">
+					<mat-form-field class="barra-busqueda"appearance="outline">
+					  <mat-label><i class="fas fa-search"></i> &#160;Buscar</mat-label>
+					  <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Admin" #input>
+					</mat-form-field>
+				</div>
+			  </li>
+			</ul>
+		  </div>
+
+		<div class="outer-table-container mat-elevation-z2">
+			<div class="table-container">
+
+
+				<mat-table [dataSource]="dataSource">
+
+					<ng-container  matColumnDef="{{ columns[0].field }}">
+						<mat-header-cell *matHeaderCellDef>{{ columns[0].field }} </mat-header-cell>
+						
+						<mat-cell class=" d-flex align-items-center justify-content-between" tabindex="1"  *matCellDef="let row" (click)="gatherInfo(row)">
+
+								<div class="texto-herramienta">{{ row.nombre }}</div> 
+								<!-- <div class="texto-fecha">{{date(row.ultimoMovimiento)}}</div> 
+								<div class="botones-tabla">
+									<i *ngIf="isAdmin == 'Admin'" class="fas fa-pen" data-toggle="modal" data-target="#herramientaModal" (click)="editClick(row)" data-backdrop="static" data-keyboard="false"></i>
+									<i *ngIf="isAdmin == 'Admin'" class="fas fa-trash" (click)="deleteClick(row)" ></i>
+								</div> -->
+														
+						</mat-cell>
+					</ng-container>
+
+					<ng-container  matColumnDef="{{ columns[1].field }}">
+						<mat-header-cell *matHeaderCellDef>{{ columns[1].field }} </mat-header-cell>
+						
+						<mat-cell class="d-flex align-items-center justify-content-between" tabindex="2"  *matCellDef="let row" (click)="gatherInfo(row)">
+
+								<!-- <div class="texto-herramienta">{{ row.nombre }}</div>  -->
+								<div class="texto-fecha">{{row.ultimoMovimiento}}</div> 									
+						</mat-cell>
+					</ng-container>
+
+					<ng-container  matColumnDef="{{ columns[2].field }}">
+						<mat-header-cell *matHeaderCellDef>{{ columns[2].field }} </mat-header-cell>
+						
+						<mat-cell class="d-flex align-items-center justify-content-between" tabindex="2"  *matCellDef="let row" (click)="gatherInfo(row)">
+
+								<!-- <div class="texto-herramienta">{{ row.nombre }}</div>  -->
+								<div class="texto-fecha" style="font-weight: bold; letter-spacing: 0.75px;" [ngClass]="{'alto': row.nivelInventario=='Alto', 'medio': row.nivelInventario=='Medio' , 'bajo': row.nivelInventario=='Bajo', 'muybajo': row.nivelInventario=='Muy Bajo', 'sininventario2': row.nivelInventario=='Sin Inventario'}">{{row.nivelInventario}}</div> 
+								<div class="iconos-edit-delete">
+									<i *ngIf="isAdmin == 'Admin'" class="fas fa-pen" data-toggle="modal" data-target="#herramientaModal" (click)="editClick(row)" data-backdrop="static" data-keyboard="false"></i>
+									<i *ngIf="isAdmin == 'Admin'" class="fas fa-trash" (click)="deleteClick(row)" ></i>
+								</div>
+														
+						</mat-cell>
+					</ng-container>
+
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;" class="list-child-group"></mat-row>
+
+					<!-- Group header -->
+					<ng-container matColumnDef="groupHeader">
+						<mat-cell colspan="999" *matCellDef="let group" class="justify-content-between ">
+							<strong>{{group[groupByColumns[group.level-1]]}}</strong>
+							<mat-icon class="expand-icons" *ngIf="group.expanded">expand_less</mat-icon>
+							<mat-icon class="expand-icons"*ngIf="!group.expanded">expand_more</mat-icon>
+						</mat-cell>
+					</ng-container>
+
+					<mat-row *matRowDef="let row; columns: ['groupHeader']; when: isGroup;" (click)="groupHeaderClick(row)" class="pointer" ></mat-row>
+
+				</mat-table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Contenido Visual de las herramientas -->
+	<div class="info-container">
+		<div class="imagen-herramienta">
+		  <img src="{{HerramientaList.foto}}" height="450px" width="450px">
+		</div>
+
+		<div class="parte-texto">
+		  	<div class="parte-texto2">
+		  		<div class="nombre-herramienta">
+					{{HerramientaList.nombre}}
+		  		</div>
+				<div *ngIf="HerramientaList.nivelInventario != '-'"  class="grupo-tres topMargin">
+		  			<div class="info-herramienta">
+						Codigo: {{HerramientaList.codigo}}
+		  			</div>
+					<div class="info-herramienta">
+						Grupo: {{HerramientaList.grupo}}
+		  			</div>
+				
+					<div class="info-herramienta">
+						Tipo: {{HerramientaList.tipo}}
+		  			</div>
+				</div>
+				<div *ngIf="HerramientaList.nivelInventario != '-'" class="grupo-tres">
+					<div class="info-herramienta">
+					  Medida: {{HerramientaList.medida}}
+					</div>
+				  <div class="info-herramienta">
+					  Filos: {{HerramientaList.filos}}
+					</div>
+			  
+				  <div class="info-herramienta">
+					  Numero de Parte: {{HerramientaList.noParte}}
+					</div>
+			  </div>
+			  
+			  <div *ngIf="HerramientaList.nivelInventario != '-'" class="grupo-dos">
+				<div class="info-herramienta">
+				  Proveedor: {{HerramientaList.proveedor}}
+				</div>
+			  <div class="info-herramienta">
+				  Precio: {{HerramientaList.precio}}
+				</div>
+		  
+		  </div>
+	
+		  		<ul class="lista-info-herramientas">
+					<li *ngIf="botonHabilitado">{{HerramientaList.descripcion}}</li>
+		  		</ul>
+			</div>
+	  	</div>
+	
+		<div class="inventario-info-all">
+	
+		  <div *ngIf="HerramientaList.nivelInventario != '-'" class="inventario-info1">
+	
+			  <div class="texto-inv-info actual">
+				Inventario Actual
+			  </div>
+	
+			  <div class="numero-piezas" *ngIf="HerramientaList.actual != 1" style="font-weight: bold;">
+				{{HerramientaList.actual}} Piezas
+			  </div>
+			  
+			  <div class="numero-piezas" *ngIf="HerramientaList.actual == 1" style="font-weight: bold;">
+				{{HerramientaList.actual}} Pieza
+			  </div>
+	
+			  <button  type="button" *ngIf="botonHabilitado" class="btn agregar-boton" data-toggle="modal" data-target="#sumarModal" (click)="sumarClick(HerramientaList)" data-backdrop="static" data-keyboard="false">Agregar Inventario</button>
+                    </div>
+
+                    <div *ngIf="HerramientaList.nivelInventario != '-'" class="inventario-info2">
+                        <div class="texto-inv-info nivel">
+                            Nivel de Inventario
+                        </div>
+
+                        <div class="estado-inventario" style="font-weight: bold; " [ngClass]="{'alto': HerramientaList.nivelInventario=='Alto', 'medio': HerramientaList.nivelInventario=='Medio' , 'bajo': HerramientaList.nivelInventario=='Bajo', 'muybajo': HerramientaList.nivelInventario=='Muy Bajo', 'sininventario': HerramientaList.nivelInventario=='Sin Inventario'}">
+                            {{HerramientaList.nivelInventario}}
+                        </div>
+
+                        <button type="button" *ngIf="botonHabilitado" class="btn restar-boton" data-toggle="modal" data-target="#restarModal" (click)="restarClick(HerramientaList)" data-backdrop="static" data-keyboard="false">Restar Inventario</button>
+                    </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="herramientaModal" tabindex="-1" role="dialog" aria-labelledby="herramientaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="herramientaModalLabel">{{ModalTitle}}</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+            </div>
+            <div class="modal-body">
+                <app-agregar-editar [tool]="tool" *ngIf="ActivateAddEditToolComp"></app-agregar-editar>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="sumarModal" tabindex="-1" role="dialog" aria-labelledby="sumarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="sumarModalLabel">{{ModalTitle2}}</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClickSumarRestar()">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+            </div>
+            <div class="modal-body" *ngIf="ActivateRestaComp">
+
+                <div class="">
+                    <label data-error="wrong" data-success="right" class="label-text">Numero de piezas a agregar</label>
+                    <input type="number" min="0" class="form-control" [(ngModel)]="cambio" placeholder="0">
+                </div>
+                <div class="modal-footer">
+                    <button (click)="sumarInventario()" class="btn modalBotonGreen">
+					Confirmar Cambios
+				</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="restarModal" tabindex="-1" role="dialog" aria-labelledby="restarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="restarModalLabel">{{ModalTitle2}}</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClickSumarRestar()">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+            </div>
+            <div class="modal-body" *ngIf="ActivateRestaComp">
+                <div class="">
+                    <label data-error="wrong" data-success="right" class="label-text">Numero de piezas a restar </label>
+                    <input type="number" min="0" class="form-control" [(ngModel)]="cambio" placeholder="0">
+                </div>
+                <div class="modal-footer">
+                    <button (click)="restarInventario()" class="btn modalBoton">
+					Confirmar Cambios
+				</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="categoTiposModal" tabindex="-1" role="dialog" aria-labelledby="categoTiposLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="categoTiposLabel">{{ModalTitle}}</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClickGrupoTipo()">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+            </div>
+            <div class="modal-body">
+                <app-tipos-grupos [tipoGrupo]="tipoGrupo" *ngIf="ActivateTipoGrupoComp"></app-tipos-grupos>
+            </div>
+        </div>
+    </div>
+</div>

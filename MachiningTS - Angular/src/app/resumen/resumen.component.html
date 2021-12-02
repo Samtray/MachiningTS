@@ -1,0 +1,112 @@
+<!-- <h1 class="titulo">Resumen</h1> -->
+
+<div class="resumen-cards">
+    <div class="card card-info cartas-arriba" routerLink="../proveedores">
+        <div class="card-body card-body-inner">
+            <div class="texto">Proveedores</div>
+            <div class="numeros">{{numeroproveedores}}</div>
+        </div>
+    </div>
+
+    <div class="card card-info cartas-arriba" routerLink="../admin">
+        <div class="card-body card-body-inner">
+            <div class="texto">Empleados</div>
+            <div class="numeros">{{numeroempleados}}</div>
+        </div>
+    </div>
+
+    <div class="card card-info cartas-arriba" routerLink="../inventario">
+        <div class="card-body card-body-inner">
+            <div class="texto">Herramientas</div>
+            <div class="numeros">{{numeroherramientas}}</div>
+        </div>
+    </div>
+
+    <div class="card card-info cartas-arriba" routerLink="../clientes">
+        <div class="card-body card-body-inner">
+            <div class="texto">Clientes</div>
+            <div class="numeros">{{numeroclientes}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="grafica1">
+        <div class="">
+            <div class="card shadow mb-4">
+
+                <div class=" titulo-lineas card-header py-3 align-items-center justify-content-between ">
+                    <h2 class="m-0 titulo-grafica">Salida y Entrada de Herramientas por Fecha</h2>
+                    <!-- <form>
+                    <div class="form-row d-flex-justify-content-between">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                          <i class="fas fa-calendar-alt"></i>
+                                      </div>
+                                  </div>
+    
+    
+                                  <button (click)="loadData()">try me</button>
+                              </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                </div>
+                                <input class="form-control">
+                            </div>
+                      </div>
+                    </div>
+                </form> -->
+                    <div class="grupo-dos">
+                        <mat-form-field appearance="outline" class="fecha-busqueda">
+                            <mat-label>Seleccione Fechas</mat-label>
+                            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                                <input matStartDate formControlName="start" placeholder="Fecha Inicial">
+                                <input matEndDate formControlName="end" placeholder="Fecha Final">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+
+                            <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                        </mat-form-field>
+
+                        <button class="btn btn-danger" (click)="loadData()">Seleccionar</button>
+                    </div>
+
+
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myChart" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grafica2">
+        <div class=" ">
+            <div class="card shadow mb-4">
+
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h2 class="m-0 titulo-grafica">Nivel de Herramientas</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="donutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

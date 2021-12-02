@@ -1,0 +1,82 @@
+.modalBoton {
+    background: #B40003;
+    color: white;
+}
+
+.modalBoton:hover {
+    background-color: #495057;
+}
+
+/* .modals-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+} */
+
+.modals-info {
+    width: 100%;
+}
+
+.marginTop {
+    margin-top: 10px;
+}
+
+.photo-section {
+    margin: auto;
+}
+
+.upload-button {
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.marginBot {
+    margin-bottom: 10px;
+}
+
+.label-text {
+    font-size: 15px;
+}
+
+.centrar {
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.separator {
+    margin-bottom: 0.5rem;
+}
+
+.separator2 {
+    margin-bottom: 2rem;
+}
+
+.separator3 {
+    margin-top: 0.5rem;
+}
+
+.separator-photo {
+    margin-bottom: 1rem;
+}
+
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+    z-index: 99999 !important;
+}
+
+.custom-file-input,
+.custom-file-label {
+    cursor: pointer;
+}

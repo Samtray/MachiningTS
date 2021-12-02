@@ -1,0 +1,318 @@
+.section {
+display:flex;
+flex-direction: row;
+}
+
+@media (max-width:1600px) {
+
+}
+
+.table-section{
+    width: 70%;
+}
+
+/* .info-section {} */
+
+.proveedores-tabla {
+    margin: 20px 50px 15px 50px;
+    border-radius: 4px;
+    max-width: 100%;
+}
+
+.outer-table-container {
+    height: 750px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+td,
+th {
+    vertical-align: middle;
+}
+
+.tabla-empleados {
+    width: 100%;
+    height: 450px;
+}
+
+.table-container {
+    min-height: 200px;
+    max-height: 840px;
+}
+
+.table-header {
+    max-width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 10px;
+}
+
+#titulo-tabla {
+    font-size: large;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+}
+
+#numero-tabla {
+    font-size: 14px;
+    margin-left: .4rem;
+    text-align: center;
+    max-height: 25px;
+    background: #E5E7EB;
+    width: 30px;
+    border-radius: 5px;
+    margin: auto 0;
+    margin-left: 10px;
+}
+
+#titulo-categoria {
+    border: 1px solid #e3dada;
+    background: white;
+    border-radius: 4px;
+    text-align: center;
+    margin-left: .6rem;
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#titulo-herramienta {
+    margin-left: .6rem;
+    border: 0px solid;
+    color: white;
+    background-color: hsl(217, 78%, 50%);
+    border-radius: 4px;
+    margin-left: .6rem;
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: background-color 0.25s ease;
+}
+
+#titulo-herramienta:hover {
+    background-color: hsl(217, 78%, 58%);
+    transition: background-color 0.25s ease;
+}
+
+#tabla-botones {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.fa-pen {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #666666;
+    transition: color 0.15s;
+}
+
+.fa-pen:hover {
+    color: #B40003;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.fa-trash {
+    font-size: 20px;
+    color: #666666;
+    transition: color 0.15s;
+}
+
+.fa-trash:hover {
+    color: #B40003;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.fa-key {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #666666;
+    transition: color 0.15s;
+}
+
+.fa-key:hover {
+    color: #B40003;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.modal-title {
+    font-size: 24px;
+    color: #B40003;
+}
+
+.row-entera {
+    background-color: blue;
+}
+
+
+
+.row-hover {
+    transition: background 0.1s;
+    background-color: #f7f5f5;
+}
+
+.row-hover:hover {
+    transition: background 0.1s;
+    background-color: #bebebe;
+}
+
+.long {
+    align-items: center;
+    margin-left: auto;
+}
+
+.barra-busqueda {
+    margin-bottom: -1.25em;
+}
+
+.azul {
+    background-color: #68A1FF;
+}
+
+.rojo {
+    background-color: #DC3545;
+}
+
+.rol {
+    font-size: 12px;
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+
+/* INFORMACIÓN DEL DISPAY*/
+.info-section {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 100%;
+    margin-top: 50px;
+    width: 30%;
+}
+
+.imagen-empleado {
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* .imagen-inner-empleado{
+    height: auto;
+    width: 100%;
+} */
+
+.imagen-inner-empleado {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.imagen-cliente {
+    width: 75px;
+    height: 75px;
+    background-size: cover;
+    background-position: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.imagen-inner-cliente {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.grupo-nombre {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 10px;
+}
+
+.empleado-nombre {
+    color: #B40003;
+    font-size: 1.3vw;
+}
+
+.rol-display {
+    font-size: 12px;
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+.empleado-id {
+    margin-top: 10px;
+    color: black;
+    font-size: 14pt;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empleado-transacciones {
+    text-align: center;
+    width: 100%;
+}
+
+.empleado-sesion {
+    text-align: center;
+    width: 100%;
+}
+
+.empleado-modificacion {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.grupo {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.texto1 {
+    font-size: 13pt;
+}
+
+.texto2 {
+    color: #B40003;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}

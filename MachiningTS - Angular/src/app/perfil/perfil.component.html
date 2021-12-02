@@ -1,0 +1,107 @@
+<div class="division">
+    <div class="uno">
+        <div class="primera-mitad">
+            <div class="grupo1">
+                <div class="outer-imagen">
+                    <img class="inner-imagen" (error)="onImgError($event)" src="{{foto}}" alt="No Image">
+                </div>
+                <div class="nombre">{{nombre}}</div>
+                <div class="rol" [ngClass]="{'rol2' : isAdmin == 'Admin'}">{{rol}}</div>
+                <!-- <div class="numero-emp">Código de empleado: {{id}}</div> -->
+                <div class="inventario-info-all">
+                    <div class="inventario-info1">
+                        <div class="texto-inv-info actual center">
+                            Ultimo Movimiento
+                        </div>
+
+                        <div class="numero-piezas">
+                            {{ultimaModificacion}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inventario-info-all">
+                    <div class="inventario-info2">
+
+                        <div class="texto-inv-info actual">
+                            Ultimo inicio de Sesión
+                        </div>
+
+                        <div class="numero-piezas">
+                            {{ultimaSesion}}
+                        </div>
+                    </div>
+                    <div class="inventario-info2">
+                        <div class="texto-inv-info nivel">
+                            Movimientos en el Inventario
+                        </div>
+
+                        <div class="numero-piezas" *ngIf="totalMovimientos != 1">
+                            {{totalMovimientos}} movimientos
+                        </div>
+                        <div class="numero-piezas" *ngIf="totalMovimientos == 1">
+                            {{totalMovimientos}} movimiento
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="dos">
+        <div class="titulo">
+            Ajustes del Perfil de Empleado
+        </div>
+        <div class="subtitulo">
+            Cambiar contraseña
+        </div>
+        <!-- contraForm.reset() -->
+        <div class="contra">
+            <form [formGroup]="contraForm" (ngSubmit)="cambiarContra();" #formDirective="ngForm">
+                <mat-form-field appearance="outline" class="field-width">
+                    <input [type]="eye ? 'password' : 'text'" matInput placeholder="Nueva Contraseña" formControlName="uno" required>
+                    <div class="pointer" mat-icon-button matSuffix (click)="eye = !eye">
+                        <mat-icon class="icon-color">
+                            {{ eye ? "visibility" : "visibility_off" }}
+                        </mat-icon>
+                    </div>
+                    <mat-error class="separator" *ngIf="isValidField('uno')">
+                        {{getErrorMessage('uno')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="field-width">
+                    <input [type]="eye2 ? 'password' : 'text'" matInput placeholder="Confirmar Contraseña" formControlName="dos" [errorStateMatcher]="matcher" required>
+                    <div class="pointer" mat-icon-button matSuffix (click)="eye2 = !eye2">
+                        <mat-icon class="icon-color">
+                            {{ eye2 ? "visibility" : "visibility_off" }}
+                        </mat-icon>
+                    </div>
+                    <mat-error class="separator2" *ngIf="contraForm.hasError('notSame')">
+                        Las contraseñas no coinciden.
+                    </mat-error>
+                </mat-form-field>
+                <button class="button-bg separator3" [disabled]="contraForm.invalid" disabled="clicked" type="submit" mat-raised-button color="primary">Cambiar Contraseña</button>
+            </form>
+
+        </div>
+
+        <div class="subtitulo">
+            Cambiar fotografía de Perfil
+        </div>
+        <div class="photo-section">
+
+            <!-- <input id="upload" type="file" (change)="updateProfilePhoto($event)" class="form-control border-0"> -->
+            <div class="centrar input-group mb-3">
+                <div class="custom-file">
+
+                    <input type="file" class="custom-file-input" id="upload" type="file" (change)="updateProfilePhoto($event)" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,348 @@
+.section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    max-width: 100%;
+}
+
+.proveedores-tabla {
+    margin: 20px 50px 0px 50px;
+    border-radius: 4px;
+    max-width: 100%;
+}
+
+.outer-table-container {
+    height: 750px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+td,
+th {
+    vertical-align: middle;
+}
+
+.tabla-empleados {
+    width: 100%;
+    height: 450px;
+}
+
+.table-container {
+    min-height: 200px;
+    max-height: 840px;
+}
+
+.table-header {
+    max-width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 10px;
+}
+
+#titulo-tabla {
+    font-size: large;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+}
+
+#numero-tabla {
+    font-size: 14px;
+    margin-left: .4rem;
+    text-align: center;
+    max-height: 25px;
+    background: #E5E7EB;
+    width: 30px;
+    border-radius: 5px;
+    margin: auto 0;
+    margin-left: 10px;
+}
+
+#titulo-categoria {
+    border: 1px solid #e3dada;
+    background: white;
+    border-radius: 4px;
+    text-align: center;
+    margin-left: .6rem;
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#titulo-herramienta {
+    margin-left: .6rem;
+    border: 0px solid;
+    color: white;
+    background-color: hsl(217, 78%, 50%);
+    border-radius: 4px;
+    margin-left: .6rem;
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: background-color 0.25s ease;
+}
+
+#titulo-herramienta:hover {
+    background-color: hsl(217, 78%, 58%);
+    transition: background-color 0.25s ease;
+}
+
+#tabla-botones {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.fa-pen {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #424242;
+    transition: color 0.25s;
+}
+
+.fa-pen:hover {
+    color: #B40003;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.fa-trash {
+    font-size: 20px;
+    color: #424242;
+    transition: color 0.25s;
+}
+
+.fa-trash:hover {
+    color: #B40003;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.fa-key {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #424242;
+    transition: color 0.25s;
+}
+
+.modal-title {
+    font-size: 24px;
+    color: #B40003;
+}
+
+.modalBoton {
+    background: #B40003;
+    color: white;
+}
+
+.fa-key:hover {
+    color: #B40003;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.row-entera {
+    background-color: blue;
+}
+
+@media (max-width:1700px) {
+    .botones {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.row-hover {
+    background-color: #f7f5f5;
+}
+
+.row-hover:hover {
+    background-color: #bebebe;
+}
+
+.long {
+    align-items: center;
+    margin-left: auto;
+}
+
+.barra-busqueda {
+    margin-bottom: -1.25em;
+}
+
+.azul {
+    background-color: #68A1FF;
+}
+
+.rojo {
+    background-color: #DC3545;
+}
+
+.rol {
+    font-size: 12px;
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+
+/* INFORMACIÓN DEL DISPAY*/
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 100%;
+    margin-top: 20px;
+    width: 600px;
+}
+
+.imagen-empleado {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+}
+
+.imagen-inner-empleado {
+    height: auto;
+    width: 100%;
+}
+
+.imagen-cliente {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+}
+
+.imagen-inner-cliente {
+    height: auto;
+    width: 100%;
+}
+
+.grupo-nombre {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 20px;
+}
+
+.empleado-nombre {
+    color: #B40003;
+    font-size: 24pt;
+}
+
+.rol-display {
+    font-size: 12px;
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+.empleado-id {
+    margin-top: 10px;
+    color: black;
+    font-size: 14pt;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empleado-transacciones {
+    text-align: center;
+    width: 100%;
+}
+
+.empleado-sesion {
+    text-align: center;
+    width: 100%;
+}
+
+.empleado-modificacion {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.grupo {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.texto1 {
+    font-size: 13pt;
+}
+
+.texto2 {
+    color: #B40003;
+}
+
+.centrar {
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.separator {
+    margin-bottom: 0.5rem;
+}
+
+.separator2 {
+    margin-bottom: 2rem;
+}
+
+.separator3 {
+    margin-top: 0.5rem;
+}
+
+.separator-photo {
+    margin-bottom: 1rem;
+}
+
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+    z-index: 99999 !important;
+}
+
+.custom-file-input,
+.custom-file-label {
+    cursor: pointer;
+}
+
+.icon-color {
+    color: #929292;
+}
+
+.pointer {
+    cursor: pointer;
+}

@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+}
+
+.outer-nav-buttons {
+    margin-right: 0px;
+}
+
+.inner-nav-buttons {
+    margin-left: 20px;
+}
+
+.i-nombre{
+    font-weight: bold;
+}
+
+
+.nav-buttons {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: -20px;
+    background-color: #6C757D;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-buttons-left {
+    background-color: #6C757D;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-buttons:hover {
+    background-color: #B40003;
+}
+
+.nav-item.active button {
+    background-color: #B40003;
+}
+
+.nav-buttons.active {
+    background-color: #B40003;
+}
+
+.nav-buttons-left:hover {
+    background-color: #B40003;
+}
+
+
+/* 
+.nav-item.active button {
+    background-color: #B40003;
+} */
+
+.nav-buttons-left.active {
+    background-color: #B40003;
+}
+
+
+/*--------ICONS---------*/
+
+
+/* .fa-bell {
+    font-size: 20px;
+    color: white;
+    padding: 1px;
+}
+
+.fa-sign-out-alt {
+    font-size: 20px;
+    color: white;
+    padding: 1px;
+} */
+
+.fas {
+    font-size: 20px;
+    color: white;
+    padding: 1px;
+}
+
+
+/*--------ICONS---------*/
+
+.navobaro {
+    padding: 20px;
+}
+
+.button {
+    background-color: #6C757D;
+    color: white;
+    text-decoration: none;
+    border-style: none;
+    border-radius: 5px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    width: auto;
+    max-width: 40px;
+    /** I'm animating max-width because width needs to be auto, and auto can't be animated **/
+    -webkit-transition: max-width 0.5s;
+    transition: max-width 0.5s;
+}
+
+.button.active {
+    max-width: 300px;
+    background-color: #B40003;
+}
+
+.button:hover {
+    max-width: 300px;
+    background-color: #B40003;
+    /* -webkit-transition: max-width 0.75s;
+    transition: max-width 0.75s;
+    -webkit-transition: background-color 0.75s;
+    transition: background-color 0.75s; */
+}
+
+.button2 {
+    background-color: #6C757D;
+    color: white;
+    text-decoration: none;
+    border-style: none;
+    border-radius: 5px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    width: auto;
+    max-width: 80px;
+    /** I'm animating max-width because width needs to be auto, and auto can't be animated **/
+    -webkit-transition: max-width 0.5s;
+    transition: max-width 0.5s;
+}
+
+.button2.active {
+    max-width: 300px;
+    background-color: #B40003;
+}
+
+.button2:hover {
+    max-width: 300px;
+    background-color: #B40003;
+    /* -webkit-transition: max-width 0.75s;
+    transition: max-width 0.75s;
+    -webkit-transition: background-color 0.75s;
+    transition: background-color 0.75s; */
+}
+
+.icon-noti {
+    font-family: "Font Awesome 5 Free";
+    font-size: 16px;
+    /* margin: 0 15px; */
+    padding: 0px 5px 0px 4px;
+    display: flex;
+    align-items: center;
+}
+
+.icon3 {
+    font-family: "Font Awesome 5 Free";
+    font-size: 16px;
+    /* margin: 0 15px; */
+    padding: 0px 35px 0px 25px;
+    display: flex;
+    align-items: center;
+}
+
+.icon2 {
+    font-family: "Font Awesome 5 Free";
+    font-size: 16px;
+    /* margin: 0 15px; */
+    padding: 0px 30px 0px 21px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    font-family: "Font Awesome 5 Free";
+    font-size: 16px;
+    /* margin: 0 15px; */
+    padding: 0px 15px 0px 4px;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    white-space: nowrap;
+    padding-right: 15px;
+}
+
+.button3 {
+    background-color: #6C757D;
+    color: white;
+    text-decoration: none;
+    border-style: none;
+    border-radius: 5px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    overflow: visible;
+    width: auto;
+    max-width: 40px;
+    /** I'm animating max-width because width needs to be auto, and auto can't be animated **/
+    -webkit-transition: max-width 0.5s;
+    transition: max-width 0.5s;
+}
+
+.button3.active {
+    background-color: #B40003;
+}
+
+.button3:hover {
+    background-color: #B40003;
+}
+
+::ng-deep.mat-menu-panel {
+    max-width: none !important;
+    max-height: none !important;
+    padding: 0;
+}
+
+::ng-deep .mat-menu-content {
+    padding: 0px !important;
+}
+
+.mat-menu-item {
+    line-height: 80px;
+    height: 80px;
+}
+
+::ng-deep .cdk-overlay-pane {
+    max-height: 350px !important;
+}
+
+.verde {
+    color: #18e949;
+}
+
+.amarillo {
+    color: rgb(207, 219, 37);
+}
+
+.naranja {
+    color: #f1af1f;
+}
+
+.rojo {
+    color: #f32323;
+    /* animation: blinker 1s cubic-bezier(0.19, 1, 0.22, 1) infinite; */
+}
+
+.gris {
+    padding: 10px;
+    background-color: #6C757D;
+    color: white;
+}
+
+::ng-deep .cdk-overlay-container .pad {
+    margin-top: 1rem;
+}
+
+.separator {
+    background-color: rgba(90, 90, 90, 0.253);
+    height: 1px;
+    width: 90%;
+    margin: 0 auto;
+}

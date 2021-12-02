@@ -1,0 +1,97 @@
+.row {
+    justify-content: center;
+}
+
+.resumen-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    margin: 50px
+}
+
+.titulo {
+    margin: 15px;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.card-info {
+    padding: 20px;
+    width: 500px;
+    border-radius: 12px;
+}
+
+.card-body-inner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.cartas-arriba {
+    box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 8px 0px;
+    color: #252733;
+}
+
+.cartas-arriba:hover {
+    border-color: #B30004;
+    color: #B30004;
+    cursor: pointer;
+}
+
+.texto {
+    font-size: 18pt;
+}
+
+.numeros {
+    margin-top: 30px;
+    font-weight: 500;
+    font-size: 28pt;
+}
+
+.titulo-grafica {
+    color: #B30004;
+}
+
+.grafica1 {
+    width: 61%;
+    margin-right: 30px;
+}
+
+.grafica2 {
+    width: 30%
+}
+
+.titulo-lineas {
+    display: flex;
+    flex-direction: row;
+}
+
+.fecha-busqueda {
+    margin-bottom: -1.25em;
+}
+
+.grupo-dos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.chartWrapper {
+    position: relative;
+    overflow-x: scroll;
+    /* overflow-x: scroll; */
+}
+
+.chartWrapper>canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    width: 100%;
+}
+
+.chartAreaWrapper {
+    width: 1500px;
+}

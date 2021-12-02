@@ -1,0 +1,51 @@
+<div class="modals-section">
+    <div class="modals-info">
+
+        <form [formGroup]="clienteForm">
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Nombre del Cliente</mat-label>
+                <input type="text" formControlName="nombre" matInput placeholder="Ej. John Titor" required>
+                <mat-error class="separator" *ngIf="isValidField('nombre')">
+                    {{getErrorMessage('nombre')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Número Telefónico</mat-label>
+                <input type="text" formControlName="telefono" matInput placeholder="Ej. (111)111-2332">
+                <mat-error class="separator" *ngIf="isValidField('telefono')">
+                    {{getErrorMessage('telefono')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline" required>
+                <mat-label>Correo Electrónico</mat-label>
+                <input type="text" formControlName="correo" matInput placeholder="Ej. John@ventas.com">
+                <mat-error class="separator" *ngIf="isValidField('correo')">
+                    {{getErrorMessage('correo')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline" required>
+                <mat-label>Dirección</mat-label>
+                <input type="text" formControlName="direccion" matInput placeholder="Ej. Blvd. La Encantada #31-lote 5, Parque Industrial El Florido II...">
+                <mat-error class="separator" *ngIf="isValidField('direccion')">
+                    {{getErrorMessage('direccion')}}
+                </mat-error>
+            </mat-form-field>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<div class="modal-footer d-flex justify-content-right">
+
+    <button (click)="agregarCliente()" [disabled]="clienteForm.invalid" disabled="clicked" *ngIf="cliente.id==0" class="btn modalBoton">
+        Agregar
+    </button>
+
+    <button (click)="editarCliente()" [disabled]="clienteForm.invalid" disabled="clicked" *ngIf="cliente.id!==0" class="btn modalBoton">
+        Editar
+    </button>
+</div>

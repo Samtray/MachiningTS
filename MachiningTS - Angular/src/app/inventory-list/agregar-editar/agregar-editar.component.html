@@ -1,0 +1,173 @@
+<div class="modals-section">
+    <div class="modals-info">
+        <form [formGroup]="herramientaForm">
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Nombre de la Herramienta </mat-label>
+                <input type="text" formControlName="nombre" matInput placeholder="Ej. Cortador HSS 5mm" required>
+                <mat-error class="separator" *ngIf="isValidField('nombre')">
+                    {{getErrorMessage('nombre')}}
+                </mat-error>
+            </mat-form-field>
+
+            <div class="grupo-tres">
+                <mat-form-field appearance="outline">
+                    <mat-label required>Grupo</mat-label>
+                    <mat-select formControlName="grupo" required>
+                        <mat-option disabled>-- Selecciona un Grupo --</mat-option>
+                        <mat-option *ngFor="let groups of grupoList" value="{{groups.nombre}}">{{groups.nombre}}</mat-option>
+                    </mat-select>
+                    <mat-error class="separator" *ngIf="isValidField('grupo')">
+                        {{getErrorMessage('grupo')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label required>Tipo</mat-label>
+                    <mat-select formControlName="tipo" required>
+                        <mat-option disabled>-- Selecciona un Tipo --</mat-option>
+                        <mat-option *ngFor="let types of typeList" value="{{types.nombre}}">{{types.nombre}}</mat-option>
+                    </mat-select>
+                    <mat-error class="separator" *ngIf="isValidField('tipo')">
+                        {{getErrorMessage('tipo')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Medida de Herramienta</mat-label>
+                    <input type="text" formControlName="medida" matInput placeholder="Ej. 10mm">
+                    <mat-error class="separator" *ngIf="isValidField('medida')">
+                        {{getErrorMessage('medida')}}
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Código de la Herramienta</mat-label>
+                <input type="text" formControlName="codigo" matInput placeholder="Ej. SER1212H16">
+                <mat-error class="separator" *ngIf="isValidField('codigo')">
+                    {{getErrorMessage('codigo')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Descripción de la Herramienta</mat-label>
+                <textarea formControlName="descripcion" matInput placeholder="Escriba detalles, medidas o notas importantes acerca de la herramienta."></textarea>
+            </mat-form-field>
+
+            <div class="grupo-dos">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Número de Parte</mat-label>
+                    <input type="text" formControlName="noParte" matInput placeholder="Ej. Número de Serie">
+                    <mat-error class="separator" *ngIf="isValidField('noParte')">
+                        {{getErrorMessage('noParte')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Proveedor</mat-label>
+                    <input type="text" formControlName="proveedor" matInput placeholder="Ej. Cutchinson">
+                    <mat-error class="separator" *ngIf="isValidField('proveedor')">
+                        {{getErrorMessage('proveedor')}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="grupo-tres">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Filos</mat-label>
+                    <input type="text" formControlName="filos" matInput placeholder="Ej. 3">
+                    <mat-error class="separator" *ngIf="isValidField('filos')">
+                        {{getErrorMessage('filos')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Inventario Inicial</mat-label>
+                    <input (keypress)="numberOnly($event)" type="text" formControlName="actual" matInput placeholder="Ej. 10">
+                    <mat-error class="separator" *ngIf="isValidField('actual')">
+                        {{getErrorMessage('actual')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Precio</mat-label>
+                    <input type="text" formControlName="precio" matInput placeholder="5.25">
+                    <mat-error class="separator" *ngIf="isValidField('precio')">
+                        {{getErrorMessage('precio')}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="grupo-tres">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nivel Bajo</mat-label>
+                    <input (keypress)="numberOnly($event)" type="text" formControlName="nivelBajo" matInput placeholder="Ej. 5">
+                    <mat-error class="separator" *ngIf="isValidField('nivelBajo')">
+                        {{getErrorMessage('nivelBajo')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nivel Medio</mat-label>
+                    <input (keypress)="numberOnly($event)" type="text" formControlName="nivelMedio" matInput placeholder="Ej. 10">
+                    <mat-error class="separator" *ngIf="isValidField('nivelMedio')">
+                        {{getErrorMessage('nivelMedio')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nivel Alto</mat-label>
+                    <input (keypress)="numberOnly($event)" type="text" formControlName="nivelAlto" matInput placeholder="Ej. 20">
+                    <mat-error class="separator" *ngIf="isValidField('nivelAlto')">
+                        {{getErrorMessage('nivelAlto')}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="photo-section" *ngIf="tool.id!==0">
+
+        <div class="mt-4">
+            <img [src]=foto height="300px" width="350px" class="img-fluid rounded mx-auto d-block mat-elevation-z4">
+        </div>
+
+        <div class="centrar input-group mb-3">
+            <div class="custom-file">
+
+                <input type="file" class="custom-file-input" id="upload" type="file" (change)="updateProfilePhoto($event)" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="photo-section " *ngIf="tool.id==0 ">
+
+        <div class="mt-4 ">
+            <img [src]=foto height="300px " width="350px " class="img-fluid rounded mx-auto d-block mat-elevation-z4 ">
+        </div>
+
+        <div class="centrar input-group mb-3">
+            <div class="custom-file">
+
+                <input type="file" class="custom-file-input" id="upload" type="file" (change)="uploadProfilePhoto($event)" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal-footer d-flex justify-content-right">
+
+    <button (click)="agregarHerramienta()" [disabled]="herramientaForm.invalid" disabled="clicked" *ngIf="tool.id==0" class="btn modalBoton">
+        Agregar
+    </button>
+
+    <button (click)="editarHerramienta()" [disabled]="herramientaForm.invalid" disabled="clicked" *ngIf="tool.id!==0" class="btn modalBoton">
+        Editar
+    </button>
+</div>

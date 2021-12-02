@@ -1,0 +1,32 @@
+<div class="component" [ngStyle]="{'background-image': 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.75)),'+'url(' + backgroundImage + ')'}">
+    <div class="login-form">
+        <mat-card>
+            <!-- <h1>MachiningTS Inventario</h1> -->
+            <img src="https://i.imgur.com/M0LO2BZ.png " alt="Logo " height="80px" width="200px" class="separator">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label required>Usuario</mat-label>
+                    <input type="text" formControlName="usuario" matInput placeholder="Ej. JuanTS" required>
+                    <mat-error class="separator" *ngIf="isValidField('usuario')">
+                        {{getErrorMessage('usuario')}}
+                    </mat-error>
+
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width-input">
+                    <mat-label required>Contraseña</mat-label>
+                    <input [type]="eye ? 'password' : 'text'" formControlName="contrasena" matInput placeholder="Entre 8 y 16 caracteres" required>
+                    <div class="pointer" mat-icon-button matSuffix (click)="eye = !eye">
+                        <mat-icon class="icon-color">
+                            {{ eye ? "visibility" : "visibility_off" }}
+                        </mat-icon>
+                    </div>
+                    <mat-error class="separator2" *ngIf="isValidField('contrasena')">
+                        {{getErrorMessage('contrasena')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <button class="button-bg separator3" [disabled]="loginForm.invalid" disabled="clicked" type="submit" mat-raised-button color="primary">Iniciar Sesión</button>
+            </form>
+        </mat-card>
+    </div>
+</div>

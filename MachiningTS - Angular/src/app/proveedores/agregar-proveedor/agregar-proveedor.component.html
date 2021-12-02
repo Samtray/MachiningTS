@@ -1,0 +1,93 @@
+<div class="modals-section">
+    <div class="modals-info">
+        <!-- <div class="">
+            <label data-error="wrong" data-success="right" class="label-text">Nombre Empresarial </label>
+            <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre de Empresa S.A de C.V">
+        </div>
+        <div class="marginTop">
+            <label data-error="wrong" data-success="right" class="label-text">Teléfono </label>
+            <input type="text" class="form-control" [(ngModel)]="telefono" placeholder="(664) 111-1111">
+        </div>
+        <div class="marginTop">
+            <label data-error="wrong" data-success="right" class="label-text">Correo Electrónico </label>
+            <input type="text" class="form-control" [(ngModel)]="correo" placeholder="ejemplo@dominio.com">
+        </div>
+        <div class="marginTop">
+            <label data-error="wrong" data-success="right" class="label-text">Dirección</label>
+            <input type="text" class="form-control" [(ngModel)]="direccion" placeholder="Dirección de la Empresa">
+        </div> -->
+
+        <form [formGroup]="proveedorForm">
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Nombre del Proveedor</mat-label>
+                <input type="text" formControlName="nombre" matInput placeholder="Ej. Truper Herramientas S.A. de C.V." required>
+                <mat-error class="separator" *ngIf="isValidField('nombre')">
+                    {{getErrorMessage('nombre')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Número Telefónico</mat-label>
+                <input type="text" formControlName="telefono" matInput placeholder="Ej. (111)111-2332">
+                <mat-error class="separator" *ngIf="isValidField('telefono')">
+                    {{getErrorMessage('telefono')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline" required>
+                <mat-label>Correo Electrónico</mat-label>
+                <input type="text" formControlName="correo" matInput placeholder="Ej. truper@ventas.com">
+                <mat-error class="separator" *ngIf="isValidField('correo')">
+                    {{getErrorMessage('correo')}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline" required>
+                <mat-label>Dirección</mat-label>
+                <input type="text" formControlName="direccion" matInput placeholder="Ej. Blvd. La Encantada #31-lote 5, Parque Industrial El Florido II...">
+                <mat-error class="separator" *ngIf="isValidField('direccion')">
+                    {{getErrorMessage('direccion')}}
+                </mat-error>
+            </mat-form-field>
+        </form>
+
+    </div>
+    <div class="photo-section" *ngIf="proveedor.id==0">
+        <div class="mt-4">
+            <img [src]=foto height="300px" width="350px" class="img-fluid rounded mx-auto d-block mat-elevation-z4" alt="No Logo">
+        </div>
+        <div class="centrar input-group mb-3">
+            <div class="custom-file">
+
+                <input type="file" class="custom-file-input" id="upload" type="file" (change)="uploadProfilePhoto($event)" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+
+            </div>
+        </div>
+    </div>
+    <div class="photo-section" *ngIf="proveedor.id!==0">
+        <div class="mt-4">
+            <img [src]=foto height="300px" width="350px" class="img-fluid rounded mx-auto d-block mat-elevation-z4" alt="No Logo">
+        </div>
+        <div class="centrar input-group mb-3">
+            <div class="custom-file">
+
+                <input type="file" class="custom-file-input" id="upload" type="file" (change)="updateProfilePhoto($event)" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal-footer d-flex justify-content-right">
+
+    <button (click)="agregarProveedor()" [disabled]="proveedorForm.invalid" disabled="clicked" *ngIf="proveedor.id==0" class="btn modalBoton">
+        Agregar
+    </button>
+
+    <button (click)="editarProveedor()" [disabled]="proveedorForm.invalid" disabled="clicked" *ngIf="proveedor.id!==0" class="btn modalBoton">
+        Editar
+    </button>
+</div>

@@ -1,0 +1,70 @@
+<div class="modals-section">
+    <div class="modals-info">
+        <form [formGroup]="grupoForm" #formDirective="ngForm">
+            <div class="grupo-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nombre del Grupo </mat-label>
+                    <input type="text" formControlName="nombre" matInput placeholder="Cortadores, fresas, etc." required>
+                    <mat-error class="separator" *ngIf="isValidField('nombre')">
+                        {{getErrorMessage('nombre')}}
+                    </mat-error>
+                </mat-form-field>
+                <button (click)="agregarGrupo()" [disabled]="grupoForm.invalid" disabled="clicked" class="btn modalBoton">
+                Agregar
+            </button>
+            </div>
+        </form>
+
+        <form [formGroup]="tipoForm" #formDirective2="ngForm">
+            <div class="grupo-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nombre del Tipo </mat-label>
+                    <input type="text" formControlName="nombre" matInput placeholder="HSS, UNICO, etc." required>
+                    <mat-error class="separator" *ngIf="isValidField('nombre')">
+                        {{getErrorMessage('nombre')}}
+                    </mat-error>
+                </mat-form-field>
+                <button (click)="agregarTipo()" [disabled]="tipoForm.invalid" disabled="clicked" class="btn modalBoton">
+                Agregar
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="tabla-categorias-tipos">
+
+    <div class="outer-list"> <span>Grupos</span>
+
+        <ul class="list list-inline">
+            <li class="content" *ngFor="let groups of grupoList">
+                <div class="pruebona">
+                    <div>
+                        {{groups.nombre}}
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-trash" (click)="borrarGrupo(groups)"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="outer-list"> <span>Tipos</span>
+
+        <ul class="list list-inline">
+            <li class="content" *ngFor="let types of typeList">
+                <div class="pruebona">
+                    <div>
+                        {{types.nombre}}
+                    </div>
+                </div>
+                <div class="">
+                    <i class="fas fa-trash" (click)="borrarTipo(types)"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,179 @@
+<div class="section">
+    <div class="table-section">
+        <div class="proveedores-tabla mat-elevation-z2">
+
+            <div class="table-header example-element-description">
+                <ul class="list-group">
+                    <li class="list-group-item border-bottom-1 border-top-0 border-right-0 border-left-0 d-flex">
+                        <div id="titulo-tabla">Empleados</div>
+                        <div id="numero-tabla">{{numeroempleados}}</div>
+                        <div id="tabla-botones" *ngIf="isAdmin == 'Admin'">
+                            <button id="titulo-herramienta" data-toggle="modal" data-target="#empleadoModal" (click)="agregarEmpleado()" data-backdrop="static" data-keyboard="false">+ Añadir Empleado</button>
+                        </div>
+                        <div class="long">
+                            <mat-form-field class="barra-busqueda" appearance="outline">
+                                <mat-label><i class="fas fa-search"></i> &#160; Buscar</mat-label>
+                                <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Admin" #input>
+                            </mat-form-field>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mat-elevation-z2">
+                <table class="tabla-empleados" mat-table [dataSource]="dataSource" matSort>
+
+
+                    <div>
+                        <ng-container matColumnDef="foto">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Foto </th>
+                            <td mat-cell *matCellDef="let row">
+                                <div class="imagen-cliente">
+                                    <img src="{{row.foto}}" class="imagen-inner-cliente">
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="nombre">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="usuario">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+                            <td mat-cell *matCellDef="let row"> {{row.usuario}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="rol">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+                            <td mat-cell *matCellDef="let row">
+                                <div class="rol" [ngClass]="{'rojo': row.rol=='Admin', 'azul': row.rol=='Empleado'}">
+                                    {{row.rol}}
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="iconos">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                            <td mat-cell *matCellDef="let row">
+                                <div class="botones" *ngIf="isAdmin == 'Admin'">
+                                    <i class="fas fa-pen" data-toggle="modal" data-target="#EditarEmpleadoModal" (click)="editarEmpleado(row)" data-backdrop="static" data-keyboard="false"></i>
+                                    <i class="fas fa-key" data-toggle="modal" data-target="#empleadoModal" data-backdrop="static" data-keyboard="false" (click)="editarContra(row)"></i>
+                                    <i class="fas fa-trash" (click)="borrarEmpleado(row)"></i>
+
+                                </div>
+                            </td>
+                        </ng-container>
+                    </div>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="row-hover" (click)="gatherInfo(row)"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td *ngIf="numeroempleados > 0" class="mat-cell" colspan="4">No hay resultados para la búsqueda "{{input.value}}"</td>
+                        <td *ngIf="numeroempleados == 0" class="mat-cell" colspan="4">No existen entradas.</td>
+                    </tr>
+
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="info-section">
+
+        <div class="imagen-empleado">
+            <img src="{{empleadosList.foto}}" class="imagen-inner-empleado">
+        </div>
+
+        <div class="grupo-nombre">
+            <div class="empleado-nombre">
+                {{empleadosList.nombre}}
+            </div>
+
+            <div class="rol-display" [ngClass]="{'rojo': empleadosList.rol=='Admin', 'azul': empleadosList.rol=='Empleado'}">
+                {{empleadosList.rol}}
+            </div>
+        </div>
+
+        <!-- <div class="empleado-id">
+        Codigo de Empleado: {{empleadosList.id}}
+      </div> -->
+
+        <div class="grupo">
+
+            <div class="empleado-sesion">
+                <div class="texto1">
+                    {{empleadosList.ultimaSesion}}
+                </div>
+
+                <div *ngIf="empleadosList.ultimaSesion != ''" class="texto2">
+                    Último Inicio de Sesión
+                </div>
+            </div>
+            <div class="empleado-transacciones">
+                <div class="texto1">
+                    {{empleadosList.totalMovimientos}}
+                </div>
+
+                <div *ngIf="empleadosList.ultimaSesion != ''"class="texto2">
+                    Movimientos en el Inventario
+                </div>
+            </div>
+        </div>
+
+        <div class="empleado-modificacion">
+            <div class="texto1">
+                {{empleadosList.ultimaModificacion}}
+            </div>
+
+            <div *ngIf="empleadosList.ultimaModificacion != ''" class="texto2">
+                Última Modificación
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="empleadoModal" tabindex="-1" role="dialog" aria-labelledby="empleadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="empleadoModalLabel">{{ModalTitle}}</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+          <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <app-agregar-empleados [empleado]="empleado" *ngIf="agregarModal"></app-agregar-empleados>
+                <app-nuevacontra [empleado]="empleado" *ngIf="agregarModalContra"></app-nuevacontra>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="EditarEmpleadoModal" tabindex="-1" role="dialog" aria-labelledby="EditarEmpleadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="EditarEmpleadoModalLabel">{{ModalTitle}}</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <app-editar-empleado [empleado2]="empleado2" *ngIf="agregarModalEmpleado"></app-editar-empleado>
+            </div>
+        </div>
+    </div>
+</div>

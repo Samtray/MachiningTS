@@ -1,0 +1,67 @@
+<div class="modals-section">
+    <div class="modals-info">
+        <!-- <div class="">
+    <label data-error="wrong" data-success="right" class="label-text">Nombre de Empleado </label>
+    <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre y Apellido">
+</div>
+
+<div class="">
+    <label data-error="wrong" data-success="right" class="label-text">Usuario </label>
+    <input type="text" class="form-control" [(ngModel)]="usuario" placeholder="Ej. JuanTS">
+</div>
+
+<div class="">
+    <label data-error="wrong" data-success="right" class="label-text">Rol en el Sistema</label>
+        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="rol">
+            <option value="Admin"> Administrador </option>
+            <option value="Empleado"> Empleado </option>
+        </select>
+</div> -->
+        <form [formGroup]="editarForm" #formDirective="ngForm">
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label required>Nombre</mat-label>
+                <input matInput placeholder="Ej. Juan Carlos Herrera" formControlName="nombre" required>
+                <mat-error class="separator" *ngIf="isValidField('nombre')">
+                    {{getErrorMessage('nombre')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label required>Rol</mat-label>
+                <mat-select formControlName="rol" required>
+                    <mat-option disabled>-- Selecciona un Rol --</mat-option>
+                    <mat-option value="Admin"> Administrador </mat-option>
+                    <mat-option value="Empleado"> Empleado </mat-option>
+                </mat-select>
+                <mat-error class="separator" *ngIf="isValidField('rol')">
+                    {{getErrorMessage('rol')}}
+                </mat-error>
+            </mat-form-field>
+        </form>
+
+
+    </div>
+    <div class="photo-section">
+        <div class="mt-4">
+            <img [src]=foto height="300px" width="350px" class="img-fluid rounded mx-auto d-block mat-elevation-z4" alt="No Logo">
+        </div>
+        <div class="centrar input-group mb-3">
+            <div class="custom-file">
+
+                <input type="file" class="custom-file-input" id="upload" type="file" (change)="updateProfilePhoto($event)" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="modal-footer d-flex justify-content-right">
+    <button (click)="editarEmpleado()" [disabled]="editarForm.invalid" class="btn modalBoton">
+        Editar
+    </button>
+</div>

@@ -1,0 +1,42 @@
+<!-- <div class="marginTop">
+    <label data-error="wrong" data-success="right" class="label-text">Contraseña Inicial (Puede ser cambiada) </label>
+    <input type="text" class="form-control" [(ngModel)]="contrasena" placeholder="••••••••">
+</div>
+
+<div class="marginTop">
+    <label data-error="wrong" data-success="right" class="label-text">Repetir Contraseña </label>
+    <input type="text" class="form-control" [(ngModel)]="contrasena2" placeholder="••••••••">
+</div> -->
+<form [formGroup]="contraForm">
+    <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label required>Nueva Contraseña</mat-label>
+        <input [type]="eye ? 'text' : 'password'" matInput placeholder="Entre 8 y 16 caracteres." formControlName="uno" required>
+        <div class="pointer" mat-icon-button matSuffix (click)="eye = !eye">
+            <mat-icon class="icon-color">
+                {{ eye ? "visibility" : "visibility_off" }}
+            </mat-icon>
+        </div>
+        <mat-error class="separator" *ngIf="isValidField('uno')">
+            {{getErrorMessage('uno')}}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label required>Confirmar Contraseña</mat-label>
+        <input [type]="eye2 ? 'text' : 'password'" matInput placeholder="Entre 8 y 16 caracteres." formControlName="dos" [errorStateMatcher]="matcher" required>
+        <div class="pointer" mat-icon-button matSuffix (click)="eye2 = !eye2">
+            <mat-icon class="icon-color">
+                {{ eye2 ? "visibility" : "visibility_off" }}
+            </mat-icon>
+        </div>
+        <mat-error class="separator2" *ngIf="contraForm.hasError('notSame')">
+            Las contraseñas no coinciden.
+        </mat-error>
+    </mat-form-field>
+</form>
+
+<div class="modal-footer d-flex justify-content-right">
+    <button (click)="editarContra()" [disabled]="contraForm.invalid" disabled="clicked" class="btn modalBoton">
+        Editar
+    </button>
+</div>

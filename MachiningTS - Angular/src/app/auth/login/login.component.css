@@ -1,0 +1,52 @@
+.component {
+    /* background-color: #DEDEDE; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+mat-card {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    height: 350px;
+}
+
+.full-width-input,
+button {
+    width: 100%;
+}
+
+.separator {
+    margin-bottom: 0.5rem;
+}
+
+.separator2 {
+    margin-bottom: 2rem;
+}
+
+.separator3 {
+    margin-top: 0.5rem;
+}
+
+.separator-photo {
+    margin-bottom: 1rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.button-bg {
+    background-color: #B82323;
+}
+
+.icon-color {
+    color: #929292;
+}

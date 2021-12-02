@@ -1,0 +1,118 @@
+<div class="modals-section">
+    <div class="modals-info">
+        <!-- <div class="">
+            <label data-error="wrong" data-success="right" class="label-text">Nombre de Empleado </label>
+            <input type="text" class="form-control" [(ngModel)]="nombre" placeholder="Nombre y Apellido">
+        </div>
+
+        <div class="">
+            <label data-error="wrong" data-success="right" class="label-text">Usuario </label>
+            <input type="text" class="form-control" [(ngModel)]="usuario" placeholder="Ej. JuanTS">
+        </div>
+
+        <div class="marginTop">
+            <label data-error="wrong" data-success="right" class="label-text">Contraseña Inicial (Puede ser cambiada) </label>
+            <input type="text" class="form-control" [(ngModel)]="contrasena" placeholder="••••••••">
+        </div>
+
+        <div class="marginTop">
+            <label data-error="wrong" data-success="right" class="label-text">Repetir Contraseña </label>
+            <input type="text" class="form-control" [(ngModel)]="contrasena2" placeholder="••••••••">
+        </div>
+
+        <div class="">
+            <label data-error="wrong" data-success="right" class="label-text">Rol en el Sistema</label>
+            <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="rol">
+            <option value="Admin"> Administrador </option>
+            <option value="Empleado"> Empleado </option>
+        </select> 
+        </div>-->
+        <form [formGroup]="agregarForm">
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label required>Nombre</mat-label>
+                <input matInput placeholder="Ej. Juan Carlos Herrera" formControlName="nombre" required>
+                <mat-error class="separator" *ngIf="isValidField('nombre')">
+                    {{getErrorMessage('nombre')}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label required>Usuario (Permanente)</mat-label>
+                <input matInput placeholder="Ej. JuanTS" formControlName="usuario" required>
+                <mat-error class="separator" *ngIf="isValidField('usuario')">
+                    {{getErrorMessage('usuario')}}
+                </mat-error>
+            </mat-form-field>
+
+            <form [formGroup]="contraForm">
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label required>Nueva Contraseña</mat-label>
+                    <input [type]="eye ? 'text' : 'password'" matInput placeholder="Entre 8 y 16 caracteres" formControlName="contrasena" required>
+                    <div class="pointer" mat-icon-button matSuffix (click)="eye = !eye">
+                        <mat-icon class="icon-color">
+                            {{ eye ? "visibility" : "visibility_off" }}
+                        </mat-icon>
+                    </div>
+                    <mat-error class="separator" *ngIf="isValidField2('contrasena')">
+                        {{getErrorMessage2('contrasena')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label required>Confirmar Contraseña</mat-label>
+                    <input [type]="eye2 ? 'text' : 'password'" matInput placeholder="Entre 8 y 16 caracteres" formControlName="contrasena2" [errorStateMatcher]="matcher" required>
+                    <div class="pointer" mat-icon-button matSuffix (click)="eye2 = !eye2">
+                        <mat-icon class="icon-color">
+                            {{ eye2 ? "visibility" : "visibility_off" }}
+                        </mat-icon>
+                    </div>
+                    <mat-error class="separator2" *ngIf="contraForm.hasError('notSame')">
+                        Las contraseñas no coinciden.
+                    </mat-error>
+
+                </mat-form-field>
+            </form>
+
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label required>Rol</mat-label>
+                <mat-select formControlName="rol" required>
+                    <mat-option disabled>-- Selecciona un Rol --</mat-option>
+                    <mat-option value="Admin"> Administrador </mat-option>
+                    <mat-option value="Empleado"> Empleado </mat-option>
+                </mat-select>
+                <mat-error class="separator" *ngIf="isValidField('rol')">
+                    {{getErrorMessage('rol')}}
+                </mat-error>
+            </mat-form-field>
+        </form>
+
+    </div>
+    <div class="photo-section">
+        <div class="mt-4">
+            <img [src]=foto height="300px" width="350px" class="img-fluid rounded mx-auto d-block mat-elevation-z4" alt="No Logo">
+        </div>
+        <div class="centrar input-group mb-3">
+            <div class="custom-file">
+
+                <input type="file" class="custom-file-input" id="upload" type="file" (change)="uploadProfilePhoto($event)" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="modal-footer d-flex justify-content-right">
+
+    <button (click)="agregarEmpleado()" [disabled]="agregarForm.invalid" disabled="clicked" *ngIf="empleado.id==0" class="btn modalBoton">
+        Agregar
+    </button>
+
+    <!--<button (click)="editarEmpleado()" *ngIf="empleado.id!==0"class="btn modalBoton">
+        Editar
+    </button>-->
+</div>
